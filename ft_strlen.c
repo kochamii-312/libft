@@ -3,20 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kayoshid <kayoshid@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/25 06:25:14 by marvin            #+#    #+#             */
-/*   Updated: 2026/04/25 06:25:14 by marvin           ###   ########.fr       */
+/*   Created: 2026/04/25 15:04:57 by kayoshid          #+#    #+#             */
+/*   Updated: 2026/04/25 16:27:52 by kayoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int strlen(char *str)
-{
-    int len;
-    len = 0;
+#include <libft.h>
 
-    while (str[len] != '\0') {
-        len++;
-    }
-    return len;
+int	ft_strlen(char *str)
+{
+	int	len;
+
+	len = 0;
+	while (str[len] != '\0')
+	{
+		len++;
+	}
+	return (len);
 }

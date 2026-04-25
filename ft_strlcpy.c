@@ -3,25 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kayoshid <kayoshid@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/25 08:59:26 by marvin            #+#    #+#             */
-/*   Updated: 2026/04/25 08:59:26 by marvin           ###   ########.fr       */
+/*   Created: 2026/04/25 15:04:41 by kayoshid          #+#    #+#             */
+/*   Updated: 2026/04/25 16:27:48 by kayoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void strlcpy(char *dst, const char *src)
-{
-    /*
-    dst: A pointer to the destination buffer where the content is to be copied.
-    src: A pointer to the null-terminated string to be copied.
-    */
-    int i;
-    i = 0;
+#include <libft.h>
 
-    while (src[i] != '\0') {
-        dst[i] = src[i];
-        i++;
-    }
-    dst[i] = '\0';
+void	ft_strlcpy(char *dst, const char *src)
+{
+	int	i;
+
+	i = 0;
+	while (src[i] != '\0')
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
 }

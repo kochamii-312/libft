@@ -3,28 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kayoshid <kayoshid@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/25 09:21:37 by marvin            #+#    #+#             */
-/*   Updated: 2026/04/25 09:21:37 by marvin           ###   ########.fr       */
+/*   Created: 2026/04/25 15:04:34 by kayoshid          #+#    #+#             */
+/*   Updated: 2026/04/25 16:27:45 by kayoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void strlcat(char *dst, const char *src)
+#include <libft.h>
+
+void	ft_strlcat(char *dst, const char *src)
 {
-    /*
-    dst: A pointer to the destination buffer where the content is to be appended.
-    src: A pointer to the null-terminated string to be appended.
-    */
-    int dst_len;
-    int i;
+	int	dst_len;
+	int	i;
 
-    dst_len = strlen(dst);
-    i = 0;
-
-    while (src[i] != '\0') {
-        dst[dst_len + i] = src[i];
-        i++;
-    }
-    dst[dst_len + i] = '\0';
+	dst_len = strlen(dst);
+	i = 0;
+	while (src[i] != '\0')
+	{
+		dst[dst_len + i] = src[i];
+		i++;
+	}
+	dst[dst_len + i] = '\0';
 }

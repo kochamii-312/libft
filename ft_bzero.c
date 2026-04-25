@@ -3,27 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kayoshid <kayoshid@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/25 07:00:13 by marvin            #+#    #+#             */
-/*   Updated: 2026/04/25 07:00:13 by marvin           ###   ########.fr       */
+/*   Created: 2026/04/25 15:03:18 by kayoshid          #+#    #+#             */
+/*   Updated: 2026/04/25 16:26:54 by kayoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <libft.h>
 #include <stddef.h>
 
-void bzero(void *s, size_t n)
+void	ft_bzero(void *s, size_t n)
 {
-    /*
-    s: A pointer to the block of memory to be set to zero.
-    n: The number of bytes to be set to zero.
-    */
-    unsigned char *ptr;
-    ptr = (ubsigned char *)s;
+	unsigned char	*ptr;
 
-    while (n > 0) {
-        *ptr = 0;
-        ptr++;
-        n--;
-    }
+	ptr = (unsigned char *)s;
+	while (n > 0)
+	{
+		*ptr = 0;
+		ptr++;
+		n--;
+	}
 }
