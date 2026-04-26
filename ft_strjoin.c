@@ -13,8 +13,8 @@ char    *ft_strjoin(char const *s1, char const *s2)
     str = (char *)malloc((len1 + len2 + 1) * sizeof(char));
     if (str == NULL)
         return (NULL);
-    ft_strncpy(str, s1, len1);
-    ft_strncpy(str + len1, s2, len2);
+    ft_memcpy(str, s1, len1);
+    ft_memcpy(str + len1, s2, len2);
     str[len1 + len2] = '\0';
     return (str);
 }
