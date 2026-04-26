@@ -13,15 +13,15 @@
 #include <libft.h>
 #include <stddef.h>
 
-void	*ft_memove(void *dst, const void *src, size_t len)
+void	*ft_memove(void *dest, const void *src, size_t len)
 {
 	unsigned char		*d;
 	const unsigned char	*s;
 
-	d = (unsigned char *)dst;
+	d = (unsigned char *)dest;
 	s = (const unsigned char *)src;
 	if (d == s || len == 0)
-		return (dst);
+		return (dest);
 	if (d < s)
 	{
 		while (len-- > 0)
@@ -34,5 +34,5 @@ void	*ft_memove(void *dst, const void *src, size_t len)
 		while (len-- > 0)
 			*(d + len) = *(s + len);
 	}
-	return (dst);
+	return (dest);
 }
