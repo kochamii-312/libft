@@ -32,24 +32,24 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	return (0);
 }
 
-int main(void)
-{
-	char str1[] = "Hello, World!";
-	char str2[] = "Hello, World!";
-	size_t n = 5;
+// int main(void)
+// {
+// 	char str1[] = "Hello, World!";
+// 	char str2[] = "Hello, World!";
+// 	size_t n = 5;
 
-	int result = memcmp(str1, str2, n);
-	if (result == 0)
-	{
-		printf("The first %zu bytes of str1 and str2 are equal.\n", n);
-	}
-	else if (result < 0)
-	{
-		printf("The first %zu bytes of str1 are less than those of str2.\n", n);
-	}
-	else
-	{
-		printf("The first %zu bytes of str1 are greater than those of str2.\n", n);
-	}
-	return 0;
-}
+// 	int result = memcmp(str1, str2, n);
+// 	if (result == 0)
+// 	{
+// 		printf("The first %zu bytes of str1 and str2 are equal.\n", n);
+// 	}
+// 	else if (result < 0)
+// 	{
+// 		printf("The first %zu bytes of str1 are less than those of str2.\n", n);
+// 	}
+// 	else
+// 	{
+// 		printf("The first %zu bytes of str1 are greater than those of str2.\n", n);
+// 	}
+// 	return 0;
+// }

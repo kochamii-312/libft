@@ -27,20 +27,20 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	return (NULL);
 }
 
-int main(void)
-{
-	char str[] = "Hello, World!";
-	int c = 'o';
-	size_t n = 5;
+// int main(void)
+// {
+// 	char str[] = "Hello, World!";
+// 	int c = 'o';
+// 	size_t n = 5;
 
-	char *result = ft_memchr(str, c, n);
-	if (result != NULL)
-	{
-		printf("Character '%c' found at position: %ld\n", c, result - str);
-	}
-	else
-	{
-		printf("Character '%c' not found in the first %zu bytes.\n", c, n);
-	}
-	return 0;
-}
+// 	char *result = ft_memchr(str, c, n);
+// 	if (result != NULL)
+// 	{
+// 		printf("Character '%c' found at position: %ld\n", c, result - str);
+// 	}
+// 	else
+// 	{
+// 		printf("Character '%c' not found in the first %zu bytes.\n", c, n);
+// 	}
+// 	return 0;
+// }
