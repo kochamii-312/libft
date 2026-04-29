@@ -6,7 +6,7 @@
 /*   By: kayoshid <kayoshid@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 15:11:11 by kayoshid          #+#    #+#             */
-/*   Updated: 2026/04/25 15:11:12 by kayoshid         ###   ########.fr       */
+/*   Updated: 2026/04/30 02:45:17 by kayoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void    *ft_memset(void *s, int c, size_t n);
 int     ft_memcmp(const void *s1, const void *s2, size_t n);
 char    *ft_strdup(const char *s);
 char    *ft_strchr(const char *s, int c);
-size_t  ft_strlen(const char *s);
+size_t  ft_strlen(const char *str);
 char    *ft_strjoin(char const *s1, char const *s2);
 char    *ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char    *ft_strtrim(char const *s1, char const *set);
