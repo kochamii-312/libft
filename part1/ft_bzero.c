@@ -6,12 +6,11 @@
 /*   By: kayoshid <kayoshid@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 15:03:18 by kayoshid          #+#    #+#             */
-/*   Updated: 2026/04/29 19:45:41 by kayoshid         ###   ########.fr       */
+/*   Updated: 2026/05/06 22:02:50 by kayoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stddef.h>
 
 void	ft_bzero(void *s, size_t n)
 {

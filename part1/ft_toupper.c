@@ -6,7 +6,7 @@
 /*   By: kayoshid <kayoshid@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 15:06:22 by kayoshid          #+#    #+#             */
-/*   Updated: 2026/04/25 16:28:06 by kayoshid         ###   ########.fr       */
+/*   Updated: 2026/05/06 22:21:43 by kayoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	ft_toupper(int c)
 {
 	if (c >= 'a' && c <= 'z')
 	{
-		return ((char)c - ('a' - 'A'));
+		return (c - ('a' - 'A'));
 	}
 	return (c);
 }
