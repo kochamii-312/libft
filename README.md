@@ -1,64 +1,140 @@
+*This project has been created as part of the 42 curriculum by kayoshid.*
+
+# Libft
+
 Part1
+
+1 Byte = 8 bit
+
+Q. なぜvoid *型をunsigned char型のポインタにキャストする必要があるのか？
+C言語の企画上、メモリのバイト単位の操作にはunsigned charが最も安全で適しているから。
+void *sはどんな型でも入るポインタだが、そのままでは*sのように中身を参照したり、s++のようにポインタを進められないため、キャストが必要である。
+unsigned charは必ず1Byte（8bit）であることが保証されている。
+intなどの方にキャストしてコピーしようとすると、メモリ上の整列の問題や型のサイズによる制約が発生し、未定義動作を引き起こす可能性がある。
+
 Q. size_tとは？
 符号なしの整数型（0または正の整数）
 環境に依存し、処理系（32 bit/64 bit）環境がサポートする最大のオブジェクトサイズを格納できる十分な大きさを保証している。32 bit環境ではunsigned int、64 bitではunsigned long longなどになる。
 <stddef.h>で定義されており、<stdio.h><stdlib.h><string.h>などをインクルードすれば使える。
 負の数をsize_t型に代入すると、最大値（全ビット1）に変換されてしまう。
 
-
 Q. unsigned intとsize_tの違いは？
-size_tは「符号なし整数型（環境依存）」で、unsigned intは「符号なし32 bit整数」。
-
+size_tは「符号なし整数型（環境依存）」で、unsigned intは「符号なし32 bit整数」。あまり気にしなくていい。
+size_tはメモリやサイズに関わる計算のときに使う。
 
 Q. void *ポインタを引数に取る利点は？
 型に依存せず、配列、構造体、バイナリデータなど、任意のデータを扱える。
 
-Q. void *sをキャストする理由は？
-void *sはどんな型でも入るポインタだが、そのままでは*sのように中身を参照したり、s++のようにポインタを進められないため。
+Q. strchrやstrrchrなど、なぜ引数の文字はint型なのか？
+- fgetc, getcharなどのint型を返す関数との互換性
+- かつてのC言語（K&R時代）でchar型などがint型も自動的に格上げ（Default Argument Promotions）されていた名残
 
+Q. 引数の文字列をconstにするのはなぜ？
+memchrやmemcmpではメモリを比較するだけで変更しないので、安全性を高めるためである。
 
-ft_bzero
-メモリ領域を0で埋めるための関数
-参照： memset（文字cで埋める）
+Q. str系とmem系の違い（strchr vs memchr, strcmp vs memcmp）
+str系はヌル文字で処理を終了してしまうのに対して、
+mem系は処理する長さを引数にし、ヌル文字にあたっても処理を継続する。
+str系は文字列としての等価性を見るが、
+mem系はメモリブロックとしての完全一致を調べる。
+mem系はバイナリデータにも対応し、すべてのバイトを比較できる。
 
+Q. mem系の利点は？
+ヌル文字を含んでいても処理を継続できる。
+そのため、画像データや構造体、ネットワークパケットなど、ヌル文字を含む可能性のあるバイナリデータの比較に適している。
+また、長さが決まっているためCPUの最適化が効きやすく、高速で動作する。
+あらかじめサイズを指定することで、予期せぬメモリ読み取りを防ぐ。
 
-Q. ヌル文字を含んでいても処理が継続できるmem系の利点は？
-画像データや構造体など、ヌル文字を含む可能性のあるバイナリデータの比較に適している。
+## ft_isalpha
+アルファベット文字であるかどうかを調べる
 
-ft_memchr
-メモリブロックの先頭nバイトから特定の文字を検索する。
-strchrと違って、ヌル文字を含むデータやバイナリデータも検索可能。
+## ft_isdigit
+数字であるかどうかを調べる
+
+## ft_isalnum
+英数字であるかどうかを調べる
+
+## ft_isascii
+ASCII文字セットに収まる7bitのunsigned char値であるかどうかを調べる
+
+## ft_isprint
+印刷可能文字（スペースを含む）であるかどうかを調べる
+
+## ft_strlen
+`size_t	ft_strlen(const char *str)`
+sが指す文字列の長さ（バイト数）を、終端のヌル文字を除いて計算する
+
+## ft_memset
+`void *memset(void *s, int c, size_t n)`
+機能: sが指すメモリ領域の先頭からnバイト分を文字cで埋める関数
+用途: bzeroと同じように、メモリの情報を削除（ゼロでクリア）するときなどに使われる
+※バイト単位での書き込みのため、cを1(0xFF)とすると、バイト値が11111111(2進数)=-1(16進数)になる
+実装のポイント: 
+- sの位置を返すので、ptrに代入することでsの位置をずらさない
+
+## ft_bzero
+`void explicit_bzero(void *s, size_t n)`
+機能: メモリ領域の先頭から0で埋める
+用途: メモリの情報を削除（クリア）するとき
+memsetと同様にバイト単位でゼロを書き込む。
+ゼロクリアが目的の関数のため、ポインタを返す必要がない。
+そのため、入力されたメモリ領域をunsigned char型にキャストしてから0を代入することで、
+バイト値を0に、ビット値（バイナリ値）を00000000にセットする。
+
+# ft_memcpy
+`void *memcpy(void *dest, const void *src, size_t n)`
+メモリ領域srcのブロックをdestにコピーする。
+変更されることのないコピー元のsrcはconstにすることで安全性を高めている。
+コピー領域が重なる場合は動作が保証されないため、その場合はmemmoveを使用する。
+srcのメモリ位置がdestよりも小さかった場合、srcがコピー操作で上書きされてしまうことがある。
+
+# ft_memmove
+`void *memmove(void *dest, const void *src, size_t n)`
+メモリ領域srcのブロックをdestにコピーする。
+srcとdestが指すメモリ領域が重なり合う場合も正しくコピーされる。
+srcのメモリ位置がdestよりも小さかった場合、n進んで、逆順からコピーする。
+自分自身へのコピーと、コピーする長さが0だった場合は、コピーする必要がないのでdestをそのまま返す。
+
+# ft_strlcpy
+`size_t strlcpy(char *dst, const char *src, size_t size)`
+コピーしたい長さを受け取り、実際コピーする予定のsrcの長さを返す。
+memcpyとの違いは、文字列の操作に特化している点。
+終端に必ずヌル文字を格納する。
+
+# ft_strlcat
+`size_t	ft_strlcat(char *dst, const char *src, size_t size)`
+
+# ft_strchr
+`char *strchr(const char *s, int c)`
+文字列sから文字cを探し、最初に見つかった場所の位置を返す。
 見つかった場合はその位置へのポインタを、ない場合はNULLを返す。
-引数
-s: 検索対象のメモリブロックへのポインタ
-c: 検索する文字（unsigned charにキャストして比較）
-n: 検索するバイト数
+ヌル文字を探したい場合だけ最後に特別に扱い、sがヌル文字になるまでwhileループをまわしているのでそのあとでsの位置を返す。
 
-Q. s1やs2をconstにするのは、memchrやmemcmpではメモリを比較するだけで変更しないので、安全性を高めるためである。
+# ft_strrchr
+`char *strrchr(const char *s, int c)`
+文字列sから文字cを探し、最後に現れる位置へのポインタを返す。
+終端文字までループを回し、見つかるたびに目印の位置を更新。
 
+# ft_strncmp
+` int strncmp(const char *s1, const char *s2, size_t n)`
+文字列s1とs2の先頭nバイトを比較し、s1-s2の値を返す。
 
-ft_memcmp
+## ft_memchr
+`void *memchr(const void *s, int c, size_t n)`
+メモリブロックの先頭nバイトから特定の文字cを検索する。
+strchrと違って、ヌル文字を含むデータやバイナリデータも検索可能。
+
+## ft_memcmp
+`int memcmp(const void *s1, const void *s2, size_t n)`
 2つのメモリブロックの先頭最大nバイトをバイト単位で比較する。
 一致で0、s1>s2で正、s1<s2で負
 strcmpと異なり、ヌル文字があっても比較を終了せず、指定されたバイト数まで強制的に比較する。
 
+## ft_strnstr
+`char *strnstr(const char *big, const char *little, size_t len)`
+文字列 big の中から、文字列 little の最初の出現箇所を検索する。
 
-ft_memcpy
-メモリ領域s2のブロックをs1にコピーする。
-変更されることのないコピー元のsrcはconstにすることで安全性を高めている。
-コピー領域が重なる場合は動作保証されないため、その場合はmemmoveを使用する。
-
-
-ft_memmove
-メモリ領域s2のブロックをs1にコピーする。
-s2が指すメモリ領域とs1が指すメモリ領域が重なり合う場合も正しくコピーされる。
-
-
-ft_memset
-メモリ領域の先頭からnバイトを文字cで埋める関数
-
-
-ft_calloc (contiguous allocation/clear allocation)
+## ft_calloc (contiguous allocation/clear allocation)
 malloc (memory acllocation)関数で確保した領域を0で初期化する。
 引数
 count: 要素数
@@ -76,11 +152,6 @@ strcpyと異なり、コピー先のメモリ確保を自動で行う。
 
 Q. mallocするサイズについて、なぜft_strlen(s)に+1をしている？
 末尾にヌル文字を入れるため。
-
-
-ft_strchr
-文字列sから文字cを探し、最初に見つかった場所の位置を返す。
-もしヌル文字を探したい場合、sがヌル文字になるまでwhileループをまわし、そのあとでsの位置を返す。
 
 
 Part2
