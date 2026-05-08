@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kayoshid <kayoshid@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/30 05:22:23 by kayoshid          #+#    #+#             */
-/*   Updated: 2026/04/30 05:22:24 by kayoshid         ###   ########.fr       */
+/*   Created: 2026/04/30 05:21:50 by kayoshid          #+#    #+#             */
+/*   Updated: 2026/05/08 19:10:17 by kayoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list  *ft_lstlast(t_list *lst)
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-    if (lst == NULL)
-        return (NULL);
-    while (lst->next != NULL)
-        lst = lst->next;
-    return (lst);
+	size_t	i;
+
+	if (s == NULL || f == NULL)
+		return ;
+	i = 0;
+	while (s[i] != '\0')
+	{
+		f((unsigned int)i, &s[i]);
+		i++;
+	}
 }

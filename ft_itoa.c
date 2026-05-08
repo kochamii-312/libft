@@ -6,7 +6,7 @@
 /*   By: kayoshid <kayoshid@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/30 05:21:20 by kayoshid          #+#    #+#             */
-/*   Updated: 2026/05/06 22:33:02 by kayoshid         ###   ########.fr       */
+/*   Updated: 2026/05/08 18:02:08 by kayoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,13 @@ char	*ft_itoa(int n)
 	long	num;
 	size_t	len;
 	char	*str;
-    	int	is_negative;
+	int		is_negative;
 
 	num = n;
 	is_negative = n < 0;
 	if (is_negative)
 		num = -n;
-	else 
+	else
 		num = n;
 	len = get_digit_count(num);
 	if (is_negative)

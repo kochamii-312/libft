@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kayoshid <kayoshid@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/30 05:22:10 by kayoshid          #+#    #+#             */
-/*   Updated: 2026/05/06 22:40:38 by kayoshid         ###   ########.fr       */
+/*   Created: 2026/04/30 05:21:43 by kayoshid          #+#    #+#             */
+/*   Updated: 2026/05/08 19:10:01 by kayoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <assert.h>
 #include "libft.h"
 
-void    ft_lstadd_back(t_list **lst, t_list *new)
+void	ft_putnbr_fd(int n, int fd)
 {
-    if (lst == NULL || new == NULL)
-        return ;
-    if (*lst == NULL)
-    {
-        *lst = new;
-        return ;
-    }
-    ft_lstlast(*lst)->next = new;
-    new->next = NULL;
+	long	num;
+
+	num = n;
+	if (num < 0)
+	{
+		ft_putchar_fd('-', fd);
+		num = -num;
+	}
+	while (num >= 10)
+	{
+		ft_putnbr_fd(num / 10, fd);
+		num = num % 10;
+	}
+	ft_putchar_fd(num + '0', fd);
 }

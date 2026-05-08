@@ -1,11 +1,18 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: kayoshid <kayoshid@student.42tokyo.jp>     +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2026/05/08 20:16:55 by kayoshid          #+#    #+#              #
+#    Updated: 2026/05/08 20:27:55 by kayoshid         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = libft.a
 
-CC = gcc
-
-CFLAGS = -Wall -Wextra -Werror
-
-SRCS = $(wildcard *.c part1/*.c part2/*.c part3/*.c)
-
+SRCS = $(wildcard *.c)
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)

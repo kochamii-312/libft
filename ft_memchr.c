@@ -6,7 +6,7 @@
 /*   By: kayoshid <kayoshid@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 15:17:02 by kayoshid          #+#    #+#             */
-/*   Updated: 2026/04/25 16:27:17 by kayoshid         ###   ########.fr       */
+/*   Updated: 2026/05/08 19:09:34 by kayoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,5 @@ void	*ft_memchr(const void *s, int c, size_t n)
 // 	{
 // 		printf("Character '%c' not found in the first %zu bytes.\n", c, n);
 // 	}
-// 	return 0;
+// 	return (0);
 // }

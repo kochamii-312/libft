@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kayoshid <kayoshid@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/30 05:22:28 by kayoshid          #+#    #+#             */
-/*   Updated: 2026/04/30 05:22:29 by kayoshid         ###   ########.fr       */
+/*   Created: 2026/04/30 05:22:05 by kayoshid          #+#    #+#             */
+/*   Updated: 2026/05/08 19:18:27 by kayoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list    *ft_lstnew(void *content)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-    t_list	*new_node;
+	char	*substr;
 
-    new_node = (t_list *)malloc(sizeof(t_list));
-    if (new_node == NULL)
-        return (NULL);
-    new_node->content = content;
-    new_node->next = NULL;
-    return (new_node);
+	if (s == NULL)
+		return (NULL);
+	substr = (char *)malloc((len + 1) * sizeof(char));
+	if (substr == NULL)
+		return (NULL);
+	ft_memcpy(substr, s + start, len);
+	substr[len] = '\0';
+	return (substr);
 }
