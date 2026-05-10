@@ -6,7 +6,7 @@
 /*   By: kayoshid <kayoshid@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/30 05:21:53 by kayoshid          #+#    #+#             */
-/*   Updated: 2026/05/08 20:13:44 by kayoshid         ###   ########.fr       */
+/*   Updated: 2026/05/09 15:00:12 by kayoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static int	fill_result(char **result, char const *s, char c)
 	{
 		while (s[i] == c)
 			i++;
-		if (s[i] != '\0')
+		if (s[i] == '\0')
 			break ;
 		len = word_length(s, i, c);
 		result[j] = ft_substr(s, i, len);
@@ -85,7 +85,7 @@ char	**ft_split(char const *s, char c)
 
 	if (s == NULL)
 		return (NULL);
-	result = malloc((count_words(s, c) + 1) * sizeof(char *));
+	result = (char **)malloc((count_words(s, c) + 1) * sizeof(char *));
 	if (result == NULL)
 		return (NULL);
 	if (!fill_result(result, s, c))

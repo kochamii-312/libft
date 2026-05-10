@@ -6,7 +6,7 @@
 /*   By: kayoshid <kayoshid@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 15:11:11 by kayoshid          #+#    #+#             */
-/*   Updated: 2026/05/08 19:17:41 by kayoshid         ###   ########.fr       */
+/*   Updated: 2026/05/09 15:24:44 by kayoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stddef.h>
 # include <stdlib.h>
+# include <stdint.h>
 # include <unistd.h>
 
 int					ft_atoi(const char *str);
@@ -26,7 +27,7 @@ int					ft_isprint(int c);
 int					ft_tolower(int c);
 int					ft_toupper(int c);
 void				ft_bzero(void *s, size_t n);
-void				*ft_calloc(size_t count, size_t size);
+void				*ft_calloc(size_t nmemb, size_t size);
 void				*ft_memchr(const void *s, int c, size_t n);
 void				*ft_memcpy(void *dest, const void *src, size_t n);
 void				*ft_memmove(void *dest, const void *src, size_t len);

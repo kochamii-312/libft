@@ -6,7 +6,7 @@
 /*   By: kayoshid <kayoshid@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/30 05:21:20 by kayoshid          #+#    #+#             */
-/*   Updated: 2026/05/08 18:02:08 by kayoshid         ###   ########.fr       */
+/*   Updated: 2026/05/09 15:48:49 by kayoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static size_t	get_digit_count(long num)
 {
-	size_t	len;
+	int	len;
 
 	len = 0;
 	if (num == 0)
@@ -27,7 +27,7 @@ static size_t	get_digit_count(long num)
 	return (len);
 }
 
-static void	fill_string(char *str, long num, size_t len, int is_negative)
+static void	fill_string(char *str, long num, int len, int is_negative)
 {
 	str[len] = '\0';
 	if (num == 0)
@@ -47,16 +47,14 @@ static void	fill_string(char *str, long num, size_t len, int is_negative)
 char	*ft_itoa(int n)
 {
 	long	num;
-	size_t	len;
+	int		len;
 	char	*str;
 	int		is_negative;
 
 	num = n;
 	is_negative = n < 0;
 	if (is_negative)
-		num = -n;
-	else
-		num = n;
+		num = -num;
 	len = get_digit_count(num);
 	if (is_negative)
 		len++;

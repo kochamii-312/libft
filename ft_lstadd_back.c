@@ -6,7 +6,7 @@
 /*   By: kayoshid <kayoshid@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/30 05:22:10 by kayoshid          #+#    #+#             */
-/*   Updated: 2026/05/08 19:23:22 by kayoshid         ###   ########.fr       */
+/*   Updated: 2026/05/09 15:06:09 by kayoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,4 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 		return ;
 	}
 	ft_lstlast(*lst)->next = new;
-	new->next = NULL;
 }

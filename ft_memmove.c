@@ -6,7 +6,7 @@
 /*   By: kayoshid <kayoshid@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 15:04:05 by kayoshid          #+#    #+#             */
-/*   Updated: 2026/05/08 19:26:49 by kayoshid         ###   ########.fr       */
+/*   Updated: 2026/05/09 14:48:41 by kayoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 		d += n;
 		s += n;
 		while (n-- > 0)
-			*(d + n) = *(s + n);
+			*(--d) = *(--s);
 	}
 	return (dest);
 }

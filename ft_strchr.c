@@ -6,7 +6,7 @@
 /*   By: kayoshid <kayoshid@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 15:04:18 by kayoshid          #+#    #+#             */
-/*   Updated: 2026/05/06 22:23:27 by kayoshid         ###   ########.fr       */
+/*   Updated: 2026/05/10 19:18:01 by kayoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 
 char	*ft_strchr(const char *s, int c)
 {
+	char	ch;
+
+	ch = (char)c;
 	while (*s != '\0')
 	{
-		if (*s == (char)c)
+		if (*s == ch)
 			return ((char *)s);
 		s++;
 	}

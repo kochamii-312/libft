@@ -95,7 +95,7 @@ libc の標準関数を `ft_` プレフィックスを付けて再実装した�
 
 | 関数 | プロトタイプ | 説明 |
 |------|-------------|------|
-| `ft_calloc` | `void *ft_calloc(size_t nmemb, size_t size)` | `nmemb × size` バイトを確保し、0 で初期化する |
+| `ft_calloc` | `void *ft_calloc(size_t nmemb, size_t size)` | `nmemb × size` バイトを確保し、0 で初期化する(contiguous allocation/clear allocation) |
 | `ft_strdup` | `char *ft_strdup(const char *s)` | 文字列を複製した新しい文字列を返す |
 
 ---
@@ -112,8 +112,8 @@ libc に含まれないか、異なる形で存在する独自の便利関数で
 | `ft_strjoin` | `char *ft_strjoin(char const *s1, char const *s2)` | `s1` と `s2` を連結した新しい文字列を返す |
 | `ft_strtrim` | `char *ft_strtrim(char const *s1, char const *set)` | `s1` の先頭と末尾から `set` に含まれる文字を取り除いた文字列を返す |
 | `ft_split` | `char **ft_split(char const *s, char c)` | 区切り文字 `c` で文字列 `s` を分割した文字列配列を返す（NULL 終端） |
-| `ft_strmapi` | `char *ft_strmapi(char const *s, char (*f)(unsigned int, char))` | 文字列の各文字に関数 `f` を適用した新しい文字列を返す |
-| `ft_striteri` | `void ft_striteri(char *s, void (*f)(unsigned int, char*))` | 文字列の各文字に関数 `f` を適用し、元の文字列を書き換える |
+| `ft_strmapi` | `char *ft_strmapi(char const *s, char (*f)(unsigned int, char))` | 文字列の各文字に関数 `f` を適用した新しい文字列を返す(String Map Index) |
+| `ft_striteri` | `void ft_striteri(char *s, void (*f)(unsigned int, char*))` | 文字列の各文字に関数 `f` を適用し、元の文字列を書き換える(String Iterate Index) |
 
 #### 数値変換
 
@@ -175,17 +175,27 @@ size_tは「符号なし整数型（環境依存）」で、`unsigned int` は�
 **なぜ `void *` を `unsigned char *` にキャストするのか？**  
 C 言語の規格上、バイト単位のメモリ操作には `unsigned char` が最も安全で適しているから。`void *s` はどんな型でも入るポインタだが、そのままでは `*s` のように中身を参照したり、`s++` のようにポインタを進められないため、キャストが必要である。`unsigned char` は必ず 1 バイト(8 bit)であることが保証されている。`int` などの型にキャストしてコピーしようとすると、メモリ上の整列の問題や型のサイズによる制約が発生し、未定義動作を引き起こす可能性がある。
 
+**`void *` 型を引数に取る利点は？**  
+型に依存せず、配列、構造体、バイナリデータなど、任意のデータを扱える。
+
 **`str` 系と `mem` 系の違い**  
 `str` 系はヌル文字で処理を終了しますが、`mem` 系は指定バイト数まで処理を継続します。そのため `mem` 系は画像データや構造体などのバイナリデータの操作に適しています。
 
 **`memcpy` と `memmove` の違い**  
 コピー元とコピー先のメモリ領域が重なる場合、`memcpy` は動作が保証されません。重複する可能性がある場合は `memmove` を使用します。
 
-**`mem`系の利点は？**  
+**`mem` 系の利点は？**  
 ヌル文字を含んでいても処理を継続できる。
 そのため、画像データや構造体、ネットワークパケットなど、ヌル文字を含む可能性のあるバイナリデータの比較に適している。
 また、長さが決まっているためCPUの最適化が効きやすく、高速で動作する。
 あらかじめサイズを指定することで、予期せぬメモリ読み取りを防ぐ。
+
+**引数の文字列を `const` にするのはなぜ？**  
+memchrやmemcmpではメモリを比較するだけで変更しないので、安全性を高めるため。
+
+**`strchr` や `strrchr` など、なぜ引数の文字は `int` 型なのか？**  
+`fgetc`, `getchar` などの `int` 型を返す関数との互換性
+かつてのC言語（K&R時代）でchar型などがint型も自動的に格上げ（Default Argument Promotions）されていた名残
 
 ---
 
